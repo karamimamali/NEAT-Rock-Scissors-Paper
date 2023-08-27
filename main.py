@@ -72,12 +72,12 @@ def eval_genomes(genomes, config):
             ge_p.append(genome)
         i +=1
 
-# You can simply comment the clock in order to train yout genomes faster.
+# You can simply comment the clock in order to train your genomes faster.
 
-    clock = pygame.time.Clock()
+    #clock = pygame.time.Clock()
     Run = True
     while Run:
-        clock.tick(FPS)
+        #clock.tick(FPS)
         time += 1
         
         for event in pygame.event.get():
@@ -96,7 +96,10 @@ def eval_genomes(genomes, config):
                     type_par = 1
                 else:
                     type_par = -1
-                output = nets_p[papers.index(unit)].activate((distance,near_unit.rect.x,near_unit.rect.y,type_par))
+
+        
+                
+                output = nets_p[papers.index(unit)].activate((distance,near_unit.rect.x,near_unit.rect.y,type_par,unit.rect.x,unit.rect.y))
 
                 decision = output.index(max(output))
                 
@@ -136,7 +139,7 @@ def eval_genomes(genomes, config):
                 else:
                     type_par = 1
                     
-                output = nets_s[scissors.index(unit)].activate((distance,near_unit.rect.x,near_unit.rect.y,type_par))
+                output = nets_s[scissors.index(unit)].activate((distance,near_unit.rect.x,near_unit.rect.y,type_par,unit.rect.x,unit.rect.y))
 
 
                 decision = output.index(max(output))
@@ -175,7 +178,7 @@ def eval_genomes(genomes, config):
                 else:
                     type_par = 1
                 
-                output = nets_r[rocks.index(unit)].activate((distance,near_unit.rect.x,near_unit.rect.y,type_par))
+                output = nets_r[rocks.index(unit)].activate((distance,near_unit.rect.x,near_unit.rect.y,type_par,unit.rect.x,unit.rect.y))
 
                 decision = output.index(max(output))
                 
